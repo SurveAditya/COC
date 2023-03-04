@@ -3,7 +3,7 @@ const mongoose=require("mongoose");
 const userSchema=new mongoose.Schema({
     password:{
         type:String,
-        required:true,
+        
     },
     imglink:{
 type:String
@@ -15,21 +15,21 @@ type:String
 
     email:{
         type:String,
-        required:true,
+        // required:true,
     },
     mobilenum:{
         type:String,
-        required:true,
+        // required:true,
     },
-    hobbies:{
+    interests:{
         type:Array,
         required:true,
     },
     location:{
         type:String,
-        required:true,
+        // required:true,
     },
-    description:{
+    tagline:{
         type:String,
         required:true,
     },
@@ -41,27 +41,27 @@ type:String
         type:String,
         required:true
     },
-    qualitfication:{
+    profession:{
         type:String,
         required:true,
     },
     height:{
         type:Number,
-        required:true,
+        // required:true,
     },
     starsign:{
         type:String,
-        required:true,
+        // required:true,
     },
     Drinking:{
         type:Boolean,
-        required:true,    
+        // required:true,    
     },
     Smoking:{
         type:Boolean,
-        required:true,
+        // required:true,
     },
-    genderpref:{
+    genderPreferences:{
         type:String,
         required:true
     }
