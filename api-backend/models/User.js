@@ -5,13 +5,9 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
-    firstname:{
-        type:String,
-        required:true,
-    },
-    lastname:{
-        type:String,
-        required:true,
+    imglink:{
+type:String,
+required:true
     },
     email:{
         type:String,
@@ -37,6 +33,10 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
+    age:{
+        type:String,
+        required:true
+    },
     qualitfication:{
         type:String,
         required:true,
@@ -57,6 +57,10 @@ const userSchema=new mongoose.Schema({
         type:Boolean,
         required:true,
     },
+    genderpref:{
+        type:String,
+        required:true
+    }
 
 });
 
