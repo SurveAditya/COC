@@ -163,12 +163,12 @@ app.post("/update",upload.single('image'),async (req, res, next) =>{
 })
 app.post("/register",upload.single('image'),async (req, res, next) =>{
     let data=req.body;
-    let imagee=req.file.path;
-    const uploadRes = await cloudinary.uploader.upload(imagee, {
-        upload_preset: "onlineShop",
-      });
-      data.imglink=uploadRes.url
-console.log(uploadRes);
+//     let imagee=req.file.path;
+//     const uploadRes = await cloudinary.uploader.upload(imagee, {
+//         upload_preset: "onlineShop",
+//       });
+//       data.imglink=uploadRes.url
+// console.log(uploadRes);
 
     const result=new User({...data});
     const response=await result.save();
@@ -187,7 +187,7 @@ console.log(uploadRes);
 let port=process.env.PORT;
 
 if(port==null || port==""){
-    port=80;
+    port=5000;
 }
 app.listen(port,()=>{
     console.log("Server started");

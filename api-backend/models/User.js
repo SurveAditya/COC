@@ -6,8 +6,7 @@ const userSchema=new mongoose.Schema({
         required:true,
     },
     imglink:{
-type:String,
-required:true
+type:String
     },
     verify:{
         type:String,

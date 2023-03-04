@@ -67,9 +67,9 @@ router.post("/userlogin", async (req, res) => {
 
 	const user = emails[0];
 
-	bcrypt.compare(password, user.password, async function(err, result) {
-		if(result==false) return res.status(400).send("Incorrect password");
-
+	// bcrypt.compare(password, user.password, async function(err, result) {
+	// 	if(result==false) return res.status(400).send("Incorrect password");
+	    if(password != user.password) return res.status(400).send("Incorrect password");
 		// sending token
 		const token =jwt.sign(
 		{
@@ -81,7 +81,7 @@ router.post("/userlogin", async (req, res) => {
 		const name=user.firstname;
 		res.json({ token,name });
 	});
-});
+
 
 
 //register events
@@ -129,6 +129,66 @@ let imag=fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename))
 
 	
 });
+
+//match users according to hobbies, genderpref
+router.get("/match",isUser, async (req, res) => {
+	const userId=req.auth.user._id;
+	User.findById(userId, (err, user) => {
+		if (err) {
+		  console.error(err);
+		  // handle error
+		} else {
+		  const foundUser = user;
+		   User.find({ 
+					hobbies: { $in: foundUser.hobbies },
+					gender: foundUser.genderpref})
+  					.limit(3)
+  					.exec((err, users) => {
+    			if (err) {
+      				// handle error
+					console.log(err)
+    				} else {
+	  				// handle success
+					res.json(users);
+
+    				}
+  });
+			}
+		});
+	});
+
+	//match users according to hobbies, genderpref and location
+	router.get("/match2",isUser, async (req, res) => {
+		const userId=req.auth.user._id;
+		User.findById(userId, (err, user) => {
+			if (err) {
+			  console.error(err);
+			  // handle error
+			} else {
+			  const foundUser = user;
+			   User.find({ 
+					hobbies: { $in: foundUser.hobbies },
+						gender: foundUser.genderpref,
+						location: foundUser.location})
+						  .limit(3)
+						  .exec((err, users) => {
+					if (err) {
+						  // handle error
+						} else {
+						  // handle success
+						res.json(users);
+	
+						}
+	  });
+				}
+			});
+		});
+
+
+
+
+
+
 
 
 
